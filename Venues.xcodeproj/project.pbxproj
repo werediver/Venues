@@ -301,6 +301,7 @@
 				TargetAttributes = {
 					840D7D631E68AD6A00D61CF2 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = V95R9X3D8A;
 						ProvisioningStyle = Automatic;
 					};
 					840D7D771E68AD6A00D61CF2 = {
@@ -508,6 +509,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = V95R9X3D8A;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -524,6 +526,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = V95R9X3D8A;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",

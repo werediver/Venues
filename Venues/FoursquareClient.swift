@@ -56,6 +56,7 @@ final class FoursquareClient: FoursquareClientProtocol {
             }
     }
 
+    // TODO: Consider extracting `image(url:)` function to a separate service.
     func image(url: URL) -> Observable<UIImage> {
         /// The compressed image data is cached in `URLSession` cache.
         return dataTask(with: .success(URLRequest(url: url)))

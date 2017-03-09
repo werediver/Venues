@@ -27,7 +27,6 @@ final class AppController {
         window.makeKeyAndVisible()
 
         let overviewViewController = AppStoryboard.main.instantiate(viewController: OverviewViewController.self)
-        overviewViewController.loadViewIfNeeded()
         overviewViewController.setup(model: self)
 
         let rootNavigationController = UINavigationController(rootViewController: overviewViewController)

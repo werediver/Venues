@@ -38,9 +38,12 @@ final class OverviewViewController: UIViewController {
     }
 
     func setup(model: OverviewModelProtocol) {
-        dataSource = CollectionViewDataSource { cell, item in
+        dataSource = CollectionViewDataSource { [weak self] cell, item in
+            guard let `self` = self
+            else { return }
             model.image(url: item.imageURL)
                 .takeUntil(cell.rx.sentMessage(#selector(UICollectionViewCell.prepareForReuse)))
+                .observeOn(MainScheduler.instance)
                 .bindTo(cell.imageView.rx.image)
                 .addDisposableTo(self.disposeBag)
         }
@@ -50,8 +53,10 @@ final class OverviewViewController: UIViewController {
             .flatMapLatest(model.getOverviewData)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] items in
-                self?.dataSource.items = items
-                self?.collectionView.reloadData()
+                guard let `self` = self
+                else { return }
+                self.dataSource.items = items
+                self.collectionView.reloadData()
             })
             .addDisposableTo(disposeBag)
     }
