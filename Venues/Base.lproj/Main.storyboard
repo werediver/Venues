@@ -17,11 +17,11 @@
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="OverviewView" customModule="Venues" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="RvT-og-3q8">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="RvT-og-3q8">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="PTo-wu-Kpr">
@@ -64,13 +64,15 @@
                             <constraint firstItem="RvT-og-3q8" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="BMm-SG-0Bo"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="RvT-og-3q8" secondAttribute="bottom" id="WBh-V8-B4I"/>
                         </constraints>
+                        <connections>
+                            <outlet property="collectionView" destination="RvT-og-3q8" id="d5y-Ms-0QA"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="WGM-NW-sHo">
                         <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="vfl-MX-qEx"/>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
-                        <outlet property="collectionView" destination="RvT-og-3q8" id="4f9-VM-hFF"/>
                         <outlet property="refreshBarButtonItem" destination="vfl-MX-qEx" id="Jgr-GU-fOd"/>
                     </connections>
                 </viewController>

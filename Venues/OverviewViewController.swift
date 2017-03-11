@@ -16,10 +16,9 @@ protocol OverviewModelProtocol {
 }
 
 final class OverviewViewController: UIViewController {
-    // TODO: Move all the view-specific code to a `UIView` subclass.
-    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var refreshBarButtonItem: UIBarButtonItem!
-    // TODO: Add a refresh-control.
+
+    var customView: OverviewView! { return self.view as? OverviewView }
 
     private let disposeBag = DisposeBag()
     private var dataSource: CollectionViewDataSource<PhotoCell, PhotoCellData>!
@@ -32,11 +31,6 @@ final class OverviewViewController: UIViewController {
             ).merge()
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-    }
-
     func setup(model: OverviewModelProtocol) {
         dataSource = CollectionViewDataSource { [weak self] cell, item in
             guard let `self` = self
@@ -47,7 +41,7 @@ final class OverviewViewController: UIViewController {
                 .bindTo(cell.imageView.rx.image)
                 .addDisposableTo(self.disposeBag)
         }
-        collectionView.dataSource = dataSource
+        customView.collectionView.dataSource = dataSource
 
         refresh
             .flatMapLatest(model.getOverviewData)
@@ -56,9 +50,22 @@ final class OverviewViewController: UIViewController {
                 guard let `self` = self
                 else { return }
                 self.dataSource.items = items
-                self.collectionView.reloadData()
+                self.customView.collectionView.reloadData()
             })
             .addDisposableTo(disposeBag)
+    }
+}
+
+final class OverviewView: UIView {
+    @IBOutlet var collectionView: UICollectionView!
+    var refreshControl: UIRefreshControl!
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        refreshControl = UIRefreshControl()
+        // TODO: Support the refresh-control.
+        //collectionView.addSubview(refreshControl)
+        collectionView.alwaysBounceVertical = true // Necessary for the refresh-control to work properly
     }
 }
 

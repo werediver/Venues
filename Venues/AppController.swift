@@ -35,6 +35,7 @@ final class AppController {
     }
 }
 
+// TODO: Make it a separate object.
 extension AppController: OverviewModelProtocol {
     func getOverviewData() -> Observable<[PhotoCellData]> {
         return locationService.authorize()
